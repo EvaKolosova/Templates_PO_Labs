@@ -11,6 +11,7 @@ namespace PO_Templates_Lab1
         Graphics gr;
         Brush br1 = (Brush)Brushes.Blue;
         Brush br2 = (Brush)Brushes.Red;
+        Brush brShadow = (Brush)Brushes.Gray;
 
         public Form1()
         {
@@ -32,6 +33,8 @@ namespace PO_Templates_Lab1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            DecoratorShadow decoratorShadow = new Visual.DecoratorShadow(this.gr);
+
             // draw Line
             IPoint start = new Geometry.Point();
             start.SetX(50);
@@ -44,6 +47,7 @@ namespace PO_Templates_Lab1
 
             VisualCurve vCurveL = new VisualCurve(curveL);
             vCurveL.Draw(this);
+            vCurveL.Draw(decoratorShadow);
             //-----------------
 
             //draw Bezier 
@@ -63,6 +67,7 @@ namespace PO_Templates_Lab1
             ICurve curveB = new Bezier(a, b, c, d);
 
             VisualCurve vCurveB = new VisualCurve(curveB);
+            vCurveB.Draw(decoratorShadow);
             vCurveB.Draw(this);
             //-----------------
         }

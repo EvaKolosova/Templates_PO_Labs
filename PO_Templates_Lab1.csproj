@@ -60,7 +60,7 @@
     <Compile Include="Geometry\Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Visual\Decorator.cs" />
+    <Compile Include="Visual\DecoratorShadow.cs" />
     <Compile Include="Visual\IExtendedDrawable.cs" />
     <Compile Include="Visual\IDrawable.cs" />
     <Compile Include="Visual\VisualCurve.cs" />
