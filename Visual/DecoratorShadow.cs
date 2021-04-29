@@ -4,7 +4,6 @@ namespace PO_Templates_Lab1.Visual
 {
     class DecoratorShadow : IDrawable, IExtendedDrawable
     {
-        private IExtendedDrawable ext;
         private IExtendedDrawable shadow;
         private IDrawable com;
 
