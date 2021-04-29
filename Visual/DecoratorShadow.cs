@@ -1,36 +1,42 @@
 ﻿using PO_Templates_Lab1.Geometry;
-using System.Drawing;
 
 namespace PO_Templates_Lab1.Visual
 {
-    class DecoratorShadow : IExtendedDrawable
+    class DecoratorShadow : IDrawable, IExtendedDrawable
     {
-        //TODO decorator for lines with shadow
+        private IExtendedDrawable ext;
+        private IExtendedDrawable shadow;
+        private IDrawable com;
 
-        private Graphics gr;
-        private Brush brShadow = (Brush)Brushes.Gray;
-
-        public DecoratorShadow(Graphics gr)
+        public DecoratorShadow(IDrawable com, IExtendedDrawable shadow)
         {
-            this.gr = gr;
+            this.com = com;
+            this.shadow = shadow;
         }
-     
+
+        public void Draw(IExtendedDrawable ext)
+        {
+            com.Draw(this);
+            com.Draw(ext);
+        }
+
         public void DrawEnd(IPoint p)
         {
             p.SetY(p.GetY() + 10);
-            gr.FillRectangle(brShadow, (float)p.GetX(), (float)p.GetY(), 5, 5);
+            shadow.DrawEnd(p);
         }
 
         public void DrawMiddlePart(IPoint p)
         {
             p.SetY(p.GetY() + 10);
-            gr.FillRectangle(brShadow, (float)p.GetX(), (float)p.GetY(), 1, 1);
+            shadow.DrawMiddlePart(p);
         }
 
         public void DrawStart(IPoint p)
         {
             p.SetY(p.GetY() + 10);
-            gr.FillRectangle(brShadow, (float)p.GetX(), (float)p.GetY(), 5, 5);
+            shadow.DrawStart(p);
         }
     }
+
 }

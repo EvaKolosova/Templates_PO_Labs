@@ -6,36 +6,19 @@ using System.Windows.Forms;
 
 namespace PO_Templates_Lab1
 {
-    public partial class Form1 : Form, IExtendedDrawable  //TODO декоратор с тенями
+    public partial class Form1 : Form  //TODO декоратор с тенями
     {
         Graphics gr;
-        Brush br1 = (Brush)Brushes.Blue;
-        Brush br2 = (Brush)Brushes.Red;
-        Brush brShadow = (Brush)Brushes.Gray;
-
+    
         public Form1()
         {
             InitializeComponent();
             gr = this.CreateGraphics();
         }
-        public void DrawMiddlePart(IPoint p)
-        {
-            gr.FillRectangle(br1, (float)p.GetX(), (float)p.GetY(), 1, 1);
-        }
-        public void DrawStart(IPoint p)
-        {
-            gr.FillRectangle(br2, (float)p.GetX(), (float)p.GetY(), 5, 5);
-        }
-        public void DrawEnd(IPoint p)
-        {
-            gr.FillRectangle(br2, (float)p.GetX(), (float)p.GetY(), 5, 5);
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DecoratorShadow decoratorShadow = new Visual.DecoratorShadow(this.gr);
-
-            // draw Line
+            //---draw Line
             IPoint start = new Geometry.Point();
             start.SetX(50);
             start.SetY(350);
@@ -46,11 +29,21 @@ namespace PO_Templates_Lab1
             ICurve curveL = new Line(start, finish);
 
             VisualCurve vCurveL = new VisualCurve(curveL);
-            vCurveL.Draw(this);
-            vCurveL.Draw(decoratorShadow);
+            //---draw Line in Form
+            Drawer drawer = new Drawer(gr, (Brush)Brushes.Blue);
+            //vCurveL.Draw(drawer);
+
+            //---print to Console values
+            Writer writer = new Writer();
+            vCurveL.Draw(writer);
+
+            //---draw shadow
+            Drawer shadowDrawer = new Drawer(gr, (Brush)Brushes.Gray);
+            DecoratorShadow decoratorShadowL = new Visual.DecoratorShadow(vCurveL, shadowDrawer);
+            decoratorShadowL.Draw(drawer);
             //-----------------
 
-            //draw Bezier 
+            //---draw Bezier 
             IPoint a = new Geometry.Point();
             a.SetX(150);
             a.SetY(400);
@@ -67,8 +60,13 @@ namespace PO_Templates_Lab1
             ICurve curveB = new Bezier(a, b, c, d);
 
             VisualCurve vCurveB = new VisualCurve(curveB);
-            vCurveB.Draw(decoratorShadow);
-            vCurveB.Draw(this);
+            vCurveB.Draw(drawer);
+
+            //---print to Console values
+            vCurveB.Draw(writer);
+
+            DecoratorShadow decoratorShadowB = new Visual.DecoratorShadow(vCurveB, shadowDrawer);
+            decoratorShadowB.Draw(drawer);
             //-----------------
         }
     }
