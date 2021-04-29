@@ -60,7 +60,7 @@ namespace PO_Templates_Lab1
             ICurve curveB = new Bezier(a, b, c, d);
 
             VisualCurve vCurveB = new VisualCurve(curveB);
-            vCurveB.Draw(drawer);
+            //vCurveB.Draw(drawer);
 
             //---print to Console values
             vCurveB.Draw(writer);
