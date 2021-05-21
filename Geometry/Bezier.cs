@@ -10,8 +10,8 @@ namespace PO_Templates_Lab1.Geometry {
             this.c = c;
             this.d = d;
         }
-        public override void GetPoint(double t, out IPoint p) {
-            p = new Point();
+        public override IPoint GetPoint(double t) {
+            IPoint p = new Point();
             double x = 0, y = 0;
 
             x = Math.Pow((1 - t), 3) * a.GetX() + 3 * t * Math.Pow((1 - t), 2) * b.GetX() + 3 * Math.Pow(t, 2) * (1 - t) * c.GetX() + Math.Pow(t, 3) * d.GetX();
@@ -19,6 +19,8 @@ namespace PO_Templates_Lab1.Geometry {
 
             p.SetX(x);
             p.SetY(y);
+
+            return p;
         }
     }
 }

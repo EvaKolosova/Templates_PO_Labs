@@ -9,7 +9,7 @@ namespace PO_Templates_Lab1.Visual
         {
             Console.Write("End point: x=");
             Console.Write(p.GetX());
-            Console.Write(" ,y=");
+            Console.Write(", y=");
             Console.Write(p.GetY());
             Console.Write("\n");
         }
@@ -18,7 +18,7 @@ namespace PO_Templates_Lab1.Visual
         {
             Console.Write("Middle point: x=");
             Console.Write(p.GetX());
-            Console.Write(" ,y=");
+            Console.Write(", y=");
             Console.Write(p.GetY());
             Console.Write("\n");
         }
@@ -27,7 +27,7 @@ namespace PO_Templates_Lab1.Visual
         {
             Console.Write("Start point: x=");
             Console.Write(p.GetX());
-            Console.Write(" ,y=");
+            Console.Write(", y=");
             Console.Write(p.GetY());
             Console.Write("\n");
         }

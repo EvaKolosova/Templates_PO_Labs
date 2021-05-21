@@ -13,10 +13,10 @@ namespace PO_Templates_Lab1.Visual
             this.shadow = shadow;
         }
 
-        public void Draw(IExtendedDrawable ext)
+        public void Draw(IExtendedDrawable shadow)
         {
             com.Draw(this);
-            com.Draw(ext);
+            com.Draw(shadow);
         }
 
         public void DrawEnd(IPoint p)

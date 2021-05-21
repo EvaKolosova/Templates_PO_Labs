@@ -10,13 +10,15 @@ namespace PO_Templates_Lab1.Geometry {
             this.b = b;
         }
 
-        public override void GetPoint(double t, out IPoint p) {
-            p = new Point();
+        public override IPoint GetPoint(double t) {
+            IPoint p = new Point();
             double x = (1 - t) * a.GetX() + t * b.GetX();
             double y = (1 - t) * a.GetY() + t * b.GetY();
 
             p.SetX(x);
             p.SetY(y);
+
+            return p;
         }
     }
 }

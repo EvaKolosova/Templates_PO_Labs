@@ -2,7 +2,7 @@
 using PO_Templates_Lab1.Visual;
 
 namespace PO_Templates_Lab1 {
-    public class VisualCurve : IDrawable {
+    public class VisualCurve : IDrawable { //TODO decorator with 1 to 0 values
         private ICurve c;
 
         public VisualCurve(ICurve c) { this.c = c; }
@@ -10,19 +10,19 @@ namespace PO_Templates_Lab1 {
         {
             IPoint p = new Geometry.Point();
 
-            doGetPoint(0, out p);
+            p = doGetPoint(0);
             ext.DrawStart(p);
 
-            for (double i = 0; i < 1; i += 0.0005)
+            for (double i = 0; i < 1; i += 0.0003)
             {
-                doGetPoint(i, out p);
+                p = doGetPoint(i);
                 ext.DrawMiddlePart(p);
             }
 
-            doGetPoint(1, out p);
+            p = doGetPoint(1);
             ext.DrawEnd(p);
         }
 
-        protected void doGetPoint(double t, out IPoint p) { c.GetPoint(t, out p); }
+        protected IPoint doGetPoint(double t) { return c.GetPoint(t); }
     }
 }

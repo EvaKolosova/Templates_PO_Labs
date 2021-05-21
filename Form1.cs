@@ -22,13 +22,23 @@ namespace PO_Templates_Lab1
             IPoint start = new Geometry.Point();
             start.SetX(50);
             start.SetY(350);
+            IPoint startForFragment = new Geometry.Point();
+            startForFragment.SetX(50);
+            startForFragment.SetY(320);
             IPoint finish = new Geometry.Point();
             finish.SetX(300);
             finish.SetY(100);
+            IPoint finishForFragment = new Geometry.Point();
+            finishForFragment.SetX(300);
+            finishForFragment.SetY(80);
 
             ICurve curveL = new Line(start, finish);
+            ICurve curveLforFr = new Line(startForFragment, finishForFragment);
+            //Fragment fr = new Fragment(1, 0, curveLforFr);
+            Fragment fr = new Fragment(1, 0.5, curveLforFr);
 
             VisualCurve vCurveL = new VisualCurve(curveL);
+            VisualCurve vCurveLforFr = new VisualCurve(fr);
             //---draw Line in Form
             Drawer drawer = new Drawer(gr, (Brush)Brushes.Blue);
             //vCurveL.Draw(drawer);
@@ -37,10 +47,14 @@ namespace PO_Templates_Lab1
             Writer writer = new Writer();
             vCurveL.Draw(writer);
 
-            //---draw shadow
+            //---draw shadow by decorator
             Drawer shadowDrawer = new Drawer(gr, (Brush)Brushes.Gray);
             DecoratorShadow decoratorShadowL = new Visual.DecoratorShadow(vCurveL, shadowDrawer);
             decoratorShadowL.Draw(drawer);
+
+            DecoratorShadow decoratorShadowLforFr = new Visual.DecoratorShadow(vCurveLforFr, shadowDrawer);
+            decoratorShadowLforFr.Draw(drawer);
+
             //-----------------
 
             //---draw Bezier 
@@ -65,6 +79,7 @@ namespace PO_Templates_Lab1
             //---print to Console values
             vCurveB.Draw(writer);
 
+            //---draw shadow by decorator
             DecoratorShadow decoratorShadowB = new Visual.DecoratorShadow(vCurveB, shadowDrawer);
             decoratorShadowB.Draw(drawer);
             //-----------------

@@ -7,6 +7,6 @@
             this.b = b;
         }
         
-        abstract public void GetPoint(double t, out IPoint p);
+        abstract public IPoint GetPoint(double t);
     }
 }
